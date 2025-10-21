@@ -1,0 +1,118 @@
+.product-card {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  max-width: 750px;
+  margin: 0 auto;           /* 🔑 centrado horizontal permanente */
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: white;
+}
+
+ 
+/* 3) Modificador BEM per a producte esgotat */
+.product-card--sold-out {
+  filter: grayscale(100%);
+}
+ 
+/* Estructura interna */
+.product-info {
+  padding: 20px;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 15px;
+}
+ 
+/* Imatge */
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+ 
+/* Botó base */
+.add-to-cart-btn {
+  align-self: end;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+ 
+/* 3) Estil del botó quan el component estigui esgotat
+      (aplicant-se via [disabled] i també dins del contenidor modificat) */
+.product-card--sold-out .add-to-cart-btn,
+.add-to-cart-btn[disabled] {
+  background-color: #bbb;
+  color: #eee;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+ 
+/* Preus (Flex) */
+.product-price-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+ 
+.current-price {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #cc0000;
+}
+ 
+.old-price {
+  font-size: 1em;
+  color: #666;
+  text-decoration: line-through;
+}
+ 
+/* Textos */
+.product-title {
+  font-size: 1.5em;
+  margin-top: 0;
+}
+ 
+.product-description {
+  color: #444;
+}
+ 
+/* Responsiu */
+@media (max-width: 600px) {
+  .product-card {
+    grid-template-columns: 1fr;
+    max-width: 90%;         /* que no toque los bordes */
+    margin: 20px auto;      /* 🔑 centrado también en móvil */
+    border-radius: 10px;
+  }
+
+  .product-info {
+    padding: 15px;
+  }
+
+  .product-price-section {
+    justify-content: space-between;
+  }
+}
+/* Espaciador flexible: empuja la etiqueta de oferta a la derecha */
+.price-spacer {
+  flex-grow: 1;
+}
+
+/* Etiqueta de oferta */
+.discount-tag {
+  background-color: #cc0000;
+  color: white;
+  font-weight: bold;
+  font-size: 0.9em;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
