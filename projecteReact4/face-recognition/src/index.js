@@ -10,6 +10,10 @@ root.render(
     <App />
   </React.StrictMode>
 );
+<head>   
+<link     rel="stylesheet"     href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"   />   
+<link     rel="stylesheet"     href="https://fonts.googleapis.com/icon?family=Material+Icons"   /> 
+</head>
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

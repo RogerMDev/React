@@ -37,7 +37,6 @@ const ExpressionDetector = () => {
   const canvasRef = useRef(null);
   const intervalRef = useRef(null);
 
-  // Cargar modelos
   useEffect(() => {
     const MODEL_URL = '/models';
     (async () => {
@@ -63,9 +62,7 @@ const ExpressionDetector = () => {
     };
   }, []);
 
-  // Helper: vídeo listo
   const isVideoReady = (video) => {
-    // HAVE_CURRENT_DATA = 2, HAVE_ENOUGH_DATA = 4
     return video && video.readyState >= 2 && video.videoWidth > 0 && video.videoHeight > 0;
   };
 
@@ -77,14 +74,11 @@ const ExpressionDetector = () => {
       const video = webcamRef.current?.video;
       const canvas = canvasRef.current;
 
-      // No detectes hasta que el vídeo tenga dimensiones reales
       if (!modelsLoaded || !video || !canvas || !isVideoReady(video)) return;
 
-      // Dimensiones reales del frame
       const vw = video.videoWidth || FALLBACK_W;
       const vh = video.videoHeight || FALLBACK_H;
 
-      // Ajusta canvas al tamaño real del vídeo
       if (canvas.width !== vw) canvas.width = vw;
       if (canvas.height !== vh) canvas.height = vh;
 
@@ -104,7 +98,6 @@ const ExpressionDetector = () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         if (detections.length > 0) {
-          // Redimensiona resultados al tamaño real del frame (¡ya no hay nulls!)
           const resized = faceapi.resizeResults(detections, displaySize);
 
           faceapi.draw.drawDetections(canvas, resized);
